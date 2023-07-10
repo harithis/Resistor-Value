@@ -1,0 +1,61 @@
+﻿#include<stdio.h>
+
+
+float fnReadResistor(int);
+float fnCalResistor(int,int,int);
+void fnPrintResistor(int ,float);
+
+
+int main()
+{
+        int type,resistor,value1,value2;
+        float CalResistor;
+        char choice;
+
+
+        do{
+        printf("Program to find equivalent resistor value.\n");
+        printf("Enter 1-series or 2-parallel resistor finding with 2 resistor value:\n");
+        scanf("%d %d %d", &type, &value1, &value2);
+
+
+        type = fnReadResistor(type);
+        CalResistor = fnCalResistor(type,value1,value2);
+
+
+        printf("Do you want to continue?:");
+        scanf("%s",&choice);
+    }while(choice == 'Y' || choice == 'y');
+}
+
+
+float fnReadResistor(int type)
+{
+    int option;
+    if(type == 1)
+        printf("Series");
+    else
+        printf("Parallel");
+        return(option);
+}
+
+
+float fnCalResistor(int type,int value1, int value2)
+{
+    float CalResistor;
+    if(type == 1){
+        CalResistor = value1 + value2;
+    }
+    else{
+        CalResistor = 1/((1/value1)+(1/value2));
+    }
+
+
+    return(CalResistor);
+}
+
+
+void fnPrintResult(int type, float CalResistor)
+{
+    printf("%d resistance = %f ohms", type, CalResistor);
+}
